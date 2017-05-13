@@ -1,0 +1,340 @@
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Setting up VASL scenarios</title>
+<style>
+.note { margin-left: 2em ; font-style: italic ; font-size: 80% ; }
+.placeholder { font-weight: bold ; font-style: italic ; color: #008080 ; }
+pre { margin-left: 2em ; }
+td.header { border: 1px dotted #c0c0c0 ; background: #f0f0f0 ; }
+</style>
+</head>
+
+<body>
+
+<h1>Setting up VASL scenarios</h1>
+
+<p> <img src="sample.png" style="width:30%;float:right;margin-left:10px;"/>
+This tutorial explains how to add extra information to a <a href="http://vasl.info" target="_blank">VASL</a> scenario, over and above just the Order of Battle. It takes a bit of time and effort, but it makes game play easier and more enjoyable, so for me, it's worth it <img src="smilies/2thumbsup.gif" />.
+
+<p> The screenshot to the right shows my setup for the classic <em>"Urban Guerillas"</em>, with all the information needed to play it:
+<ul>
+<li> Victory Conditions.
+<li> ELR's and SAN's for both sides (because I'm constantly forgetting to check for these <img src="smilies/neutral.gif" />).
+<li> Special Scenario Rules.
+<li> Notes for each Gun and AFV.
+<div class="note">You can get this information by right-clicking on a piece and choosing <em>"Show info"</em>, but it's often hard to even find your pieces when the counter density is high, and SSR's sometimes change how a piece works (I'll put the updated details in the scenario setup). It's also useful to have an overview of what your pieces do e.g. if you're looking for something that can lay down some smoke. </div>
+<li> Information about Panzerfaust and ATMM checks, if applicable (something I also always forget about), complete with a counter for the number of shots left.
+<li> The Order Of Battle for both sides, with instructions on where, or how, they should set up.
+<li> Victory hexes are highlighted, just in case I forget where I'm supposed to be going <img src="smilies/rolleyes.gif" />
+<li> Setup areas are also highlighted.
+<div class="note">I like to do these in green, since it's fairly unobtrusive - they're only needed during setup, and after that, they don't uglify the board too much.</div>
+</ul>
+
+<p> And with a bit of practice, you'll be able to create monster setups like this one <img src="smilies/smile.gif" />
+<center> <img src="french-mustered.png" style="width:90%;" /> </center>
+
+<div style="width:35%;float:right;border:1px dotted #444;padding:0.5em;font-size:80%;font-style:italic;color:#444;">
+<strong>IMPORTANT NOTE:</strong> If you set up scenarios like this, you should be mindful about distributing them. The scenarios themselves are copyrighted by their respective publishers, and it's considered bad form to distribute information that would let people play them without having first purchased them.</div>
+
+<br clear="all">
+
+<a name="labels"></a>
+<h2>Adding labels to the scenario</h2>
+
+<p> <img src="draggable-overlays.png" style="float:right;margin-left:10px;width:400px;" />
+Adding information to a scenario is done using <em>labels</em>.
+
+<p> Open the <em>Draggable Overlays</em> window, and drag a label onto the main window.
+
+<p> Labels come in two parts, which are accessible via the right-click menu, or press Ctrl-L and Ctrl-2 to access each one. I always just use the first line, so I delete everything in line 2.
+
+<p> The thick black box indicates that the label is selected. If you click elsewhere on the main window, it goes away, and the label will remain in place even if you click on it, or try to drag it. To select it again, Shift-click somewhere in the box, and you will be able to move it around, or edit it. This can sometimes be difficult to find, since it's not visible on-screen, but it will be in the middle (vertically and horizontally) of the label.
+
+<p> <img src="simple-label.png" style="width:300px;float:left;margin-right:10px;" />
+Type something into one of the label lines, and it will appear on-screen.
+<p> So far, so good, but things get much more interesting when we start using HTML.
+
+<br clear="all">
+
+<a name="html"></a>
+<h2>Using HTML in labels</h2>
+
+<p> If a label line starts with <tt>&lt;html&gt;</tt>, VASL will interpret the label as HTML, which uses special codes to change the appearance of the text.
+
+<p> <img src="bold-text.png" style="float:right;width:300px;margin-left:10px;" />
+For example, the HTML code for bolding text is to wrap it with <tt>&lt;b&gt;</tt> and <tt>&lt;/b&gt;</tt>. Setting a label to this:
+<pre>
+&lt;html&gt; This is &lt;b&gt;bold text&lt;/b&gt;, this is not.
+</pre>
+shows a label with bold text (see right).
+
+<br clear="all">
+
+<p> <img src="italic-underline-text.png" style="float:right;width:300px;margin-left:10px;" />
+Similarly, use <tt>&lt;i&gt;</tt> and <tt>&lt;/i&gt;</tt> to italicize text, and <tt>&lt;u&gt;</tt> and <tt>&lt;/u&gt;</tt> to underline it.</tt>
+<pre>
+&lt;html&gt; This is &lt;i&gt;italicized&lt;/i&gt;, this is &lt;u&gt;underlined&lt;/u&gt;.
+</pre>
+
+<br clear="all">
+
+<p> <img src="bullet-list.png" style="float:right;width:300px;margin-left:10px;" />
+To set up a bullet list, use <tt>&lt;ul&gt;</tt> and <tt>&lt;/ul&gt;</tt>, and then <tt>&lt;li&gt;</tt> for each bullet point.
+<pre>
+&lt;html&gt;
+&lt;ul&gt;
+    &lt;li&gt; Germans
+    &lt;li&gt; Russians
+    &lt;li&gt; Klingons
+&lt;/ul&gt;
+</pre>
+
+<br clear="all">
+
+<p> <img src="table.png" style="float:right;width:300px;margin-left:10px;" />
+Finally, use <tt>&lt;table&gt;</tt> and <tt>&lt;/table&gt;</tt> to present stuff in a table i.e. rows and columns. <tt>&lt;tr&gt;</tt> starts a new row, while <tt>&lt;td&gt;</tt> starts a new cell within the current row.
+<pre>
+&lt;html&gt;
+&lt;table border=1&gt;
+    &lt;tr&gt; &lt;td&gt; This one &lt;td&gt; That one
+    &lt;tr&gt; &lt;td&gt; Over here &lt;td&gt; Over there
+&lt;/table&gt;
+</pre>
+I added <tt>border=1</tt> to the <tt>&lt;table&gt;</tt> tag, which is the HTML code for <em>"show the table borders"</em>. If you remove this, the information will still be lined up in a tabular format, but the border lines will not be shown.
+
+<p> The last 2 examples highlight a limitation VASL has when editing labels. It's nice to write your HTML over multiple lines, so that you can see how it's structured, but once you enter it into VASL, if you later want to change it, when you copy it out, VASL will have munged everything into one long line. To workaround this, I keep all my HTML in a separate text file and edit it there, and copy it into VASL, label by label.
+
+<p> All this was a really quick intro to HTML, but there are loads of tutorials online that go into more detail. We'll be using some more advanced features below, but I'll explain them as we go along.
+
+<a name="victory-conditions"></a>
+<h2>Adding Victory Conditions</h2>
+
+<p> <img src="victory-conditions.png" style="float:right;width:300px;margin-left:10px;" />
+This is the HTML template I use for adding Victory Conditions:
+<pre>
+&lt;html&gt;
+&lt;b&gt;&lt;u&gt;<span class="placeholder">SCENARIO NAME</span>&lt;/u&gt;&lt;/b&gt; (<span class="placeholder">SCENARIO ID</span>) &lt;i&gt;(<span class="placeholder">SCENARIO DATE</span>)&lt;/i&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Victory Conditions:&lt;/b&gt; <span class="placeholder">...</span>
+</pre>
+Just replace the placeholders with the correct information.
+<p> The only new tag used here is <tt>&lt;br&gt;</tt>, which starts a new line.
+
+<br clear="all">
+
+<a name="elr-san"></a>
+<h2>Adding ELR and SAN</h2>
+
+<p> <img src="elr-san.png" style="float:right;width:300px;margin-left:10px;" />
+Adding a label for ELR and SAN is also straight-forward:
+<pre>
+&lt;html&gt;
+&lt;table style="border:1px dotted #808080;background:#f0f0f0;"&gt;
+    &lt;tr&gt;
+        &lt;td&gt; &lt;b&gt; <span class="placeholder">Russian</span>: &lt;br&gt; <span class="placeholder">German</span>: &lt;/b&gt;
+        &lt;td&gt; ELR: <span class="placeholder">1</span> &lt;br&gt; ELR: <span class="placeholder">2</span>
+        &lt;td&gt; SAN: <span class="placeholder">3</span> &lt;br&gt; SAN: <span class="placeholder">4</span>
+&lt;/table&gt;
+</pre>
+The <tt>&lt;table&gt;</tt> tag has a <em>"style"</em> CSS attribute, which tells VASL to draw the table with a dotted border, with the color #808080 (light grey), and a background color of #f0f0f0 (a lighter shade of grey).
+
+<br clear="all">
+
+<a name="ssr"></a>
+<h2>Adding Special Scenario Rules</h2>
+
+<p> <img src="ssr.png" style="float:right;width:300px;margin-left:10px;" />
+This is the template I use for adding SSR's:
+<pre>
+&lt;html&gt;
+&lt;table style="width:250px;"&gt;
+    &lt;tr&gt;
+        &lt;td style="border-bottom:1px dotted #808080;background:#f0f0f0;"&gt;
+          &lt;b&gt;Scenario Special Rules&lt;/b&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+          &lt;ul style="margin:0 0 0 10px;"&gt;
+              &lt;li&gt; <span class="placeholder">SSR #1</span>
+              &lt;li&gt; <span class="placeholder">SSR #2</span>
+              &lt;li&gt; <span class="placeholder">SSR #3</span>
+          &lt;/ul&gt;
+&lt;/table&gt;
+</pre>
+<p> The <tt>&lt;table&gt;</tt> tag has a CSS style that sets its width to 250 pixels.
+<p> The first row uses the techniques we've seen above to create a shaded header with bold text.
+<p> The second row creates a bullet list, with one item for each SSR. The style on the <tt>&lt;ul&gt;</tt> tag tightens up the spacing around the bullet list, which is quite large, by default.
+
+<br clear="all">
+
+<a name="oob"></a>
+<h2>Adding Order Of Battle labels</h2>
+
+<p> <img src="order-of-battle.png" style="float:right;width:300px;margin-left:10px;" />
+This is the template I use for adding Order Of Battle setup instructions:
+<pre>
+&lt;html&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td style="width:200px;border-bottom:1px dotted <span class="placeholder">#91cdf5</span>;background:<span class="placeholder">#d3edfc</span>;"&gt;
+          &lt;b&gt; <span class="placeholder">SETUP INSTRUCTIONS</span> &lt;/b&gt;
+&lt;/table&gt;
+</pre>
+These are the color codes I use for each nationality:
+<table style="margin-left:2em;">
+<tr> <td> &nbsp; <td class="header">border <td class="header">background
+<tr> <td class="header" style="background:#d3edfc;">German <td>#91cdf5 <td>#d3edfc
+<tr> <td class="header" style="background:#eabe51;">Russian <td>#d68d1a <td>#eabe51
+<tr> <td class="header" style="background:#e5f700;">American <td>#cdf000 <td>#e5f700
+<tr> <td class="header" style="background:#f6edda;">British <td>#e5cea0 <td>#f6edda
+<tr> <td class="header" style="background:#dde0e2;">Italian <td>#a6adb2 <td>#dde0e2
+<tr> <td class="header" style="background:#a2ddff;">French <td>#41a5ff <td>#a2ddff
+<tr> <td class="header" style="background:#7cf5b1;">Axis Minor <td>#1de256 <td>#7cf5b1
+</table>
+
+<br clear="all">
+
+<a name="panzerfausts"></a>
+<h2>Adding labels for Panzerfaust checks</h2>
+
+<p> <img src="panzerfausts.png" style="float:right;width:300px;margin-left:10px;" />
+If panzerfausts are available, I add a label like this to the scenario:
+<pre>
+&lt;html&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td style="width:100px;border-bottom:1px dotted #91cdf5;background:#d3edfc;"&gt;
+          &lt;b&gt;Panzerfausts&lt;/b&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+          range: <span class="placeholder">2 hexes</span> &lt;br&gt;
+          PF check: dr &amp;lt;= <span class="placeholder">3</span> (&amp;#9651;) &lt;br&gt;
+          &lt;table style="margin-left:10px;"&gt;
+              &lt;tr&gt;
+                  &lt;td style="margin:0;padding:0;"&gt; +1
+                  &lt;td style="margin:0;padding:0;"&gt; HS/crew
+              &lt;tr&gt;
+                  &lt;td style="margin:0;padding:0;"&gt; +2
+                  &lt;td style="margin:0;padding:0;"&gt; SMC
+              &lt;tr&gt;
+                  &lt;td style="margin:0;padding:0;"&gt; +1
+                  &lt;td style="margin:0;padding:0;"&gt; CX
+              &lt;tr&gt;
+                  &lt;td style="margin:0;padding:0;margin-right:5px;"&gt; +1
+                  &lt;td style="margin:0;padding:0;"&gt; non-AFV target
+          &lt;/table&gt;
+          original 6 = pinned
+&lt;/table&gt;
+</pre>
+This looks complicated, but it's using the same techniques we've seen above. Note that the list of DRM's is a table inside a table.
+<p> The range, Final dr required, and maximum number of shots vary depending on when the scenario takes place, so you can update these details for the particular scenario you're setting up.
+
+<p> If you want to track the maximum number of shots, you can add a label like this:
+<pre>
+&lt;html&gt; &lt;div style="font-size:12px;font-weight:bold;"&gt; 123
+</pre>
+and update it as the game progresses.
+
+<p> <img src="panzerfausts2.png" style="float:left;width:300px;margin-right:10px;" />
+Alternatively, I like to leave a few panzerfaust counters beside the map, so that I can easily see what's on the front and back of them, and you can add this label to one of them instead.
+
+<br clear="all">
+
+<a name="atmm"></a>
+<h2>Adding labels for ATMM checks</h2>
+
+<p> <img src="atmm.png" style="float:right;width:300px;margin-left:10px;" />
+The template for ATMM checks is pretty much the same as the one for panzerfausts:
+<pre>
+&lt;html&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td style="width:150px;border-bottom:1px dotted #91cdf5;background:#d3edfc;"&gt;
+        &lt;b&gt;Anti-Tank Magnetic Mines&lt;/b&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+          ATMM check: dr &amp;lt;= 3 &lt;br&gt;
+          &lt;table style="margin-left:10px;"&gt;
+              &lt;tr&gt;
+                  &lt;td style="margin:0;padding:0;"&gt; +1
+                  &lt;td style="margin:0;padding:0;"&gt; HS/crew
+              &lt;tr&gt;
+                  &lt;td style="margin:0;padding:0;"&gt; +2
+                  &lt;td style="margin:0;padding:0;"&gt; SMC
+              &lt;tr&gt;
+                  &lt;td style="margin:0;padding:0;"&gt; +1
+                  &lt;td style="margin:0;padding:0;"&gt; CX
+              &lt;tr&gt;&lt;td style="margin:0;padding:0;margin-right:5px;"&gt; +1
+                  &lt;td style="margin:0;padding:0;"&gt; vs. non-armored vehicle
+          &lt;/table&gt;
+          original 6 = pinned
+&lt;/table&gt;
+</pre>
+
+<br clear="all">
+
+<a name="vehicle-notes"></a>
+<h2>Adding Vehicle and Gun notes</h2>
+
+<p> <img src="vehicle-notes.png" style="float:right;width:300px;margin-left:10px;" />
+This is the template I use for adding Vehicle and Gun notes.
+<pre>
+&lt;html&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td colspan=2 style="border-bottom:1px dotted <span class="placeholder">#d68d1a</span>;background:<span class="placeholder">#eabe51</span>;"&gt;
+          &lt;b&gt;Russian Vehicles&lt;/b&gt;
+    &lt;tr&gt;
+        &lt;td valign=top&gt; &lt;b&gt;<span class="placeholder">VEHICLE 1</span>&lt;/b&gt;
+        &lt;td valign=top&gt; <span class="placeholder">info 1a</span> &lt;br&gt; <span class="placeholder">info 1b</span>
+    &lt;tr&gt;
+        &lt;td valign=top&gt; &lt;b&gt;<span class="placeholder">VEHICLE 2</span>&lt;/b&gt;
+        &lt;td valign=top&gt; <span class="placeholder">info 2</span>
+    &lt;tr&gt;
+        &lt;td valign=top&gt; &lt;b&gt;<span class="placeholder">VEHICLE 3</span>&lt;/b&gt;
+        &lt;td valign=top&gt; <span class="placeholder">info 3a</span> &lt;br&gt; <span class="placeholder">info 3b</span> &lt;br&gt; <span class="placeholder">info 3c</span>
+&lt;/table&gt;
+</pre>
+This should be easy, by now <img src="smilies/smile.gif" />. The colors can be obtained from the table above, and note the use of the <tt>&lt;br&gt;</tt> tag to present each piece of vehicle info (e.g. <i>sD7</i> or <i>CS 6</i>) on separate lines.
+<p> The <tt>colspan=2</tt> attribute in the first <tt>&lt;td&gt;</tt> tag creates a table cell that spreads over 2 columns, while the <tt>valign=top</tt> attribute in the <tt>&lt;td&gt;</tt> tags vertically aligns text at the top of those table cells, instead of in the middle.
+
+<br clear="all">
+
+<p> <img src="vehicle-notes2.png" style="float:left;width:350px;margin-right:10px;" />
+For example:
+<pre>
+&lt;html&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td colspan=2 style="border-bottom:1px dotted #d68d1a;background:#eabe51;"&gt;
+        &lt;b&gt;Russian Vehicle Notes&lt;/b&gt;
+    &lt;tr&gt;
+        &lt;td valign=top&gt; &lt;b&gt;T34/85&lt;/b&gt;
+        &lt;td valign=top&gt; CS 6 &lt;br&gt; sD6 &lt;small&gt;&lt;i&gt;(unlimited, by SSR)&lt;/i&gt;&lt;/small&gt; &lt;br&gt; A6
+    &lt;tr&gt;
+        &lt;td valign=top&gt; &lt;b&gt;IS-2m&lt;/b&gt;
+        &lt;td valign=top&gt; CS 6 &lt;br&gt; No IF
+&lt;/table&gt;
+</pre>
+
+<br clear="all">
+
+<a name="perimeters"></a>
+<h2>Highlighting hexes</h2>
+
+<p> <img src="perimeters.png" style="float:right;width:300px;margin-left:10px;" />
+To highlight hexes, perimeter lines can be added from the <em>Map Annotations</em> tab in the <em>Draggable Overlays</em> window. Right-click on them to see the options for rotating them, and adjusting their length.
+<p> If you want add a lot of these, it's often easier to add just a few of them to the board, Shift-click them so that they're all selected, then clone them (Ctrl-K). It won't be visible on-screen, but VASL will have made a copy of them, which can you then drag into their new position.
+<p>The <em>"factory"</em> marker in the screenshot is just a simple label, using red text:
+<pre>
+&lt;html&gt; &lt;font color=red&gt;factory&lt;/font&gt;
+</pre>
+
+<br clear="all">
+
+<center>
+<hr>
+<div style="font-size:80%;font-style:italic;text-align:right;"> Released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons BY+SA license</a> </div>
+</center>
+
+</body>
+
